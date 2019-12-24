@@ -27,7 +27,7 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = LocalizableStrings.photoListTitle
-        FlickrPhotoCell.register(for: self.collectionView)
+        FlickrPhotoCell.register(for: collectionView)
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
         {
            // flowLayout.headerReferenceSize = CGSize(width: self.collectionView.frame.size.width, height: 100)
@@ -49,29 +49,13 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
             }
         }
         
-//        viewModel.updateLoadingStatusClosure = {[weak self] () in
-//            DispatchQueue.main.async {
-//                let isLoading = self?.viewModel.isLoading ?? false
-//                if isLoading {
-//                    self?.activityIndicator.startAnimating()
-//                    UIView.animate(withDuration: 0.2, animations: {
-//                        self?.collectionView.alpha = 0.0
-//                    })
-//                }else {
-//                    self?.activityIndicator.stopAnimating()
-//                    UIView.animate(withDuration: 0.2, animations: {
-//                        self?.collectionView.alpha = 1.0
-//                    })
-//                }
-//            }
-//        }
-        
         viewModel.reloadVehicleDataClosure = { [weak self] () in
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
         }
         
+        requestGetPhotos()
     }
     
     //MARK: - Internal

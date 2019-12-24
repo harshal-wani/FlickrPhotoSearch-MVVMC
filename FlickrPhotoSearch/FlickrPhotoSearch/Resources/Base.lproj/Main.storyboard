@@ -37,21 +37,25 @@
                                 </collectionViewCellContentView>
                             </collectionViewCell>
                         </cells>
-                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="HeaderView" id="WCe-Cg-9gM" customClass="SearchCollectionHeaderView" customModule="FlickrPhotoSearch" customModuleProvider="target">
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" reuseIdentifier="SearchReusableView" id="WCe-Cg-9gM" customClass="SearchReusableView" customModule="FlickrPhotoSearch" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
                             <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <searchBar contentMode="redraw" fixedFrame="YES" placeholder="search" translatesAutoresizingMaskIntoConstraints="NO" id="hTs-vc-L7Y">
-                                    <rect key="frame" x="0.0" y="6" width="414" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <textInputTraits key="textInputTraits" returnKeyType="search"/>
-                                    <connections>
-                                        <outlet property="delegate" destination="h8w-r4-jkf" id="xod-lU-q3c"/>
-                                    </connections>
-                                </searchBar>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Search" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RE9-uo-PaA">
+                                    <rect key="frame" x="8" y="8" width="398" height="34"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits" returnKeyType="search" enablesReturnKeyAutomatically="YES"/>
+                                </textField>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstItem="RE9-uo-PaA" firstAttribute="centerY" secondItem="WCe-Cg-9gM" secondAttribute="centerY" id="e8C-jd-Yto"/>
+                                <constraint firstAttribute="trailingMargin" secondItem="RE9-uo-PaA" secondAttribute="trailing" id="lUb-sW-TxQ"/>
+                                <constraint firstItem="RE9-uo-PaA" firstAttribute="leading" secondItem="WCe-Cg-9gM" secondAttribute="leadingMargin" id="uqO-88-gdz"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="searchTextField" destination="RE9-uo-PaA" id="2Fa-5t-uXF"/>
+                            </connections>
                         </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="h8w-r4-jkf" id="GFR-f6-cVc"/>

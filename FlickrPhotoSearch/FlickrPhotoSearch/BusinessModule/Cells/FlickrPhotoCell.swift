@@ -13,11 +13,9 @@ final class FlickrPhotoCell: UICollectionViewCell {
     public static let reusableId: String = "FlickrPhotoCell"
 
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var title: UILabel!
     
     var dataCellViewModel : DataCellViewModel? {
         didSet {
-            title.text = dataCellViewModel?.title
             if let url = dataCellViewModel?.photoURL {
                 imageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "img_placeholder"))
             }

@@ -48,7 +48,7 @@ struct AppConstants {
     static let flickrAPIKey = "acdeef10bb0e01ffe6cae8f0a82fca54"
     
     //URL Query Parameters
-    static let perPageLimit = "15"
+    static let perPageLimit = "30"
     static let servertId = "serverId"
     static let farm = "farm"
 }
@@ -56,7 +56,7 @@ struct AppConstants {
 struct LocalizableStrings {
     
     /// Screen title
-    static let photoListTitle = "Photo List"
+    static let photoListTitle = "Chat"
     
     /// Common
     static let alert = "Alert"

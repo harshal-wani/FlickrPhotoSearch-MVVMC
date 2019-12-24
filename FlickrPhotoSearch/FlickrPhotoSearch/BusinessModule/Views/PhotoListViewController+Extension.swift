@@ -13,8 +13,8 @@ extension PhotoListViewController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (kind == UICollectionView.elementKindSectionHeader) {
-            let headerView:UICollectionReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchCollectionHeaderView.reusableId, for: indexPath)
-
+            let headerView:SearchReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchReusableView.reusableId, for: indexPath) as! SearchReusableView
+            headerView.delegate = self
             return headerView
         }
 
@@ -39,36 +39,37 @@ extension PhotoListViewController {
 }
 
 // MARK: - Collection View Flow Layout Delegate
-extension PhotoListViewController : UICollectionViewDelegateFlowLayout {
-    
+//extension PhotoListViewController : UICollectionViewDelegateFlowLayout {
+//
 //    func collectionView(_ collectionView: UICollectionView,
 //                        layout collectionViewLayout: UICollectionViewLayout,
 //                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let paddingSpace = sectionInsets.left * (itemsPerRow + 1)
-//        let availableWidth = view.frame.width - paddingSpace
-//        let widthPerItem = availableWidth / itemsPerRow
+//        let paddingSpace = sectionInsets.left * (2 + 1)
+//        let availableWidth = collectionView.frame.width - paddingSpace
+//        let widthPerItem = availableWidth / 2
 //
 //        return CGSize(width: widthPerItem, height: widthPerItem)
 //    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        insetForSectionAt section: Int) -> UIEdgeInsets {
-        return sectionInsets
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return sectionInsets.left
-    }
-}
+//
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        insetForSectionAt section: Int) -> UIEdgeInsets {
+//        return sectionInsets
+//    }
+//
+//    func collectionView(_ collectionView: UICollectionView,
+//                        layout collectionViewLayout: UICollectionViewLayout,
+//                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+//        return sectionInsets.left
+//    }
+//}
 
-// MARK: - UISearchBarDelegate
-extension PhotoListViewController: UISearchBarDelegate {
+// MARK: - SearchCollectionHeaderView delegate
+extension PhotoListViewController: SearchTextDelegate {
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    func enteredText(str: String) {
         self.pageIndex = 0
+        self.searchText = str
         self.requestGetPhotos()
     }
 }

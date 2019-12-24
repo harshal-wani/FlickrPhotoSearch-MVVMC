@@ -10,6 +10,7 @@
 		262C5D4EF94672D2289FA900 /* Pods_FlickrPhotoSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0727703768B5CF3DF1C28F1B /* Pods_FlickrPhotoSearch.framework */; };
 		99ADBB8913344EE4F0FD2235 /* Pods_FlickrPhotoSearchTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3AB9EAA00C7746612B29BF69 /* Pods_FlickrPhotoSearchTests.framework */; };
 		C9410D6723B1FE3D00A90DF4 /* PhotoListViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9410D6623B1FE3D00A90DF4 /* PhotoListViewController+Extension.swift */; };
+		C9410D8A23B24AAB00A90DF4 /* SearchReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9410D8823B24AAB00A90DF4 /* SearchReusableView.swift */; };
 		C9AB85C7239B892000EC210D /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AB85C6239B892000EC210D /* Coordinator.swift */; };
 		C9AB85C9239B893C00EC210D /* Storyboarded.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AB85C8239B893C00EC210D /* Storyboarded.swift */; };
 		C9AB85CB239B895800EC210D /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9AB85CA239B895800EC210D /* MainCoordinator.swift */; };
@@ -22,7 +23,6 @@
 		C9E12AF0239B867E00F6B91B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E12AE8239B867E00F6B91B /* LaunchScreen.storyboard */; };
 		C9E12AF1239B867E00F6B91B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E12AEA239B867E00F6B91B /* Main.storyboard */; };
 		C9E52FDA239BF25800F00EA8 /* MockPhotoList.json in Resources */ = {isa = PBXBuildFile; fileRef = C9E52FD9239BF25800F00EA8 /* MockPhotoList.json */; };
-		C9E52FDC239CD97F00F00EA8 /* SearchCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E52FDB239CD97F00F00EA8 /* SearchCollectionHeaderView.swift */; };
 		C9EEB4F4239BBA4D005D7742 /* FlickrPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EEB4F3239BBA4D005D7742 /* FlickrPhotoCell.swift */; };
 		C9EEB4F6239BBAA2005D7742 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EEB4F5239BBAA2005D7742 /* Photo.swift */; };
 		C9EEB4F8239BBB9E005D7742 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EEB4F7239BBB9E005D7742 /* PhotoViewModel.swift */; };
@@ -49,6 +49,7 @@
 		3AB9EAA00C7746612B29BF69 /* Pods_FlickrPhotoSearchTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FlickrPhotoSearchTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92F62911F6B24560E744D4AA /* Pods-FlickrPhotoSearchTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrPhotoSearchTests.debug.xcconfig"; path = "Target Support Files/Pods-FlickrPhotoSearchTests/Pods-FlickrPhotoSearchTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C9410D6623B1FE3D00A90DF4 /* PhotoListViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotoListViewController+Extension.swift"; sourceTree = "<group>"; };
+		C9410D8823B24AAB00A90DF4 /* SearchReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchReusableView.swift; sourceTree = "<group>"; };
 		C949830DAE128C251E58926B /* Pods-FlickrPhotoSearch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FlickrPhotoSearch.debug.xcconfig"; path = "Target Support Files/Pods-FlickrPhotoSearch/Pods-FlickrPhotoSearch.debug.xcconfig"; sourceTree = "<group>"; };
 		C9AB85C6239B892000EC210D /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		C9AB85C8239B893C00EC210D /* Storyboarded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storyboarded.swift; sourceTree = "<group>"; };
@@ -66,7 +67,6 @@
 		C9E12AEB239B867E00F6B91B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C9E12AEC239B867E00F6B91B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9E52FD9239BF25800F00EA8 /* MockPhotoList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockPhotoList.json; sourceTree = "<group>"; };
-		C9E52FDB239CD97F00F00EA8 /* SearchCollectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionHeaderView.swift; sourceTree = "<group>"; };
 		C9EEB4F3239BBA4D005D7742 /* FlickrPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrPhotoCell.swift; sourceTree = "<group>"; };
 		C9EEB4F5239BBAA2005D7742 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C9EEB4F7239BBB9E005D7742 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
@@ -239,7 +239,7 @@
 			children = (
 				C9E12AE4239B867E00F6B91B /* PhotoListViewController.swift */,
 				C9410D6623B1FE3D00A90DF4 /* PhotoListViewController+Extension.swift */,
-				C9E52FDB239CD97F00F00EA8 /* SearchCollectionHeaderView.swift */,
+				C9410D8823B24AAB00A90DF4 /* SearchReusableView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -442,12 +442,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9410D8A23B24AAB00A90DF4 /* SearchReusableView.swift in Sources */,
 				C9EEB4F6239BBAA2005D7742 /* Photo.swift in Sources */,
 				C9EEB4FE239BBC26005D7742 /* Constants.swift in Sources */,
 				C9EEB502239BC407005D7742 /* UIAlertController+Flickr.swift in Sources */,
 				C9C8EDB823A4C60600C0C259 /* UICollectionViewCell+Flickr.swift in Sources */,
 				C9E12AEE239B867E00F6B91B /* PhotoListViewController.swift in Sources */,
-				C9E52FDC239CD97F00F00EA8 /* SearchCollectionHeaderView.swift in Sources */,
 				C9EEB4FC239BBBF1005D7742 /* EndPoint.swift in Sources */,
 				C9E12AED239B867E00F6B91B /* AppDelegate.swift in Sources */,
 				C9AB85C7239B892000EC210D /* Coordinator.swift in Sources */,
