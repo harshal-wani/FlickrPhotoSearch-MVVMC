@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol PhotoSearchable {
-    var pageIndex: Int { get set }
-    var searchText : String { get set }
-}
-
 final class PhotoListViewController: UICollectionViewController, Storyboarded, PhotoSearchable {
 
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -79,10 +74,24 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
         
     }
     
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        
+    //MARK: - Internal
+
+    internal func requestGetPhotos() {
         self.pageIndex += 1
         viewModel.searchPhotos(query: ["text" : self.searchText,
-        "page" : "\(self.pageIndex)"])
+                                       "page" : "\(self.pageIndex)"])
+
+    }
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let currentOffset = scrollView.contentOffset.y
+        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
+        
+        if maximumOffset - currentOffset <= -10.0 {
+            let endScrolling = scrollView.contentOffset.y + scrollView.frame.size.height
+            if (endScrolling >= scrollView.contentSize.height) {
+                requestGetPhotos()
+            }
+        }
+        
     }
 }

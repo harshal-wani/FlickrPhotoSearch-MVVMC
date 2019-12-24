@@ -68,10 +68,7 @@ extension PhotoListViewController : UICollectionViewDelegateFlowLayout {
 extension PhotoListViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-
-        //API request
-        viewModel.searchPhotos(query: ["text" : searchBar.text!,
-                                       "page" : "\(self.pageIndex = 1)"])
-
+        self.pageIndex = 0
+        self.requestGetPhotos()
     }
 }
