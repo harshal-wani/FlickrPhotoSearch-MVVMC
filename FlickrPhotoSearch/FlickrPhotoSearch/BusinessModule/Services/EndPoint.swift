@@ -8,29 +8,33 @@
 
 import Foundation
 
+/// Search photo params
+protocol PhotoSearchable {
+    var pageIndex: Int { get set }
+    var searchText : String { get set }
+}
+
 struct EndPoint {
     let path: String
-    var queryItem: [URLQueryItem]? = nil
+    var queryItem: [String: String]
 }
-//services/rest/
+
 extension EndPoint {
 
     static func searchPhoto(list: [String:String] = [:]) -> EndPoint {
         
         /// Default parameters
-        var param = [
-            URLQueryItem(name: "method", value: "flickr.photos.search"),
-            URLQueryItem(name: "api_key", value: AppConstants.flickrAPIKey),
-            URLQueryItem(name: "format", value: "json"),
-            URLQueryItem(name: "nojsoncallback", value: "1"),
-            URLQueryItem(name: "per_page", value: AppConstants.perPageLimit)
+        var queryParams: [String: String] = [
+            "method": "flickr.photos.search",
+            "api_key": AppConstants.flickrAPIKey,
+            "format": "json",
+            "nojsoncallback": "1",
+            "per_page": AppConstants.perPageLimit
         ]
         /// Append text and page
-        for (key,value) in list {
-            param.append(URLQueryItem(name: key, value: value))
-        }
+        queryParams.merge(list) { (_, new) in new }
         
-        return EndPoint(path: "/services/rest", queryItem: param)
+        return EndPoint(path: "/services/rest", queryItem: queryParams)
     }
 
 }
@@ -41,7 +45,16 @@ extension EndPoint {
         components.scheme = APP_URL.scheme
         components.host = APP_URL.host
         components.path = path
-        components.queryItems = queryItem
+        components.setQueryItems(with: queryItem)
         return components.url
+    }
+}
+
+extension URLComponents {
+    
+    /// Convert dictionary to URLQueryItem
+    /// - Parameter parameters: <#parameters description#>
+    mutating func setQueryItems(with parameters: [String: String]) {
+        self.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
     }
 }
