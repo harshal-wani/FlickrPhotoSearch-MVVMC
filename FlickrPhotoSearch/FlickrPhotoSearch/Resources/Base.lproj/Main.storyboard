@@ -26,6 +26,7 @@
                         <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="MOU-Cv-Lcj">
                             <rect key="frame" x="0.0" y="-44" width="414" height="896"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <gestureRecognizers/>
                         </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="MbL-F0-OaT">
@@ -60,6 +61,7 @@
                         <connections>
                             <outlet property="dataSource" destination="h8w-r4-jkf" id="GFR-f6-cVc"/>
                             <outlet property="delegate" destination="h8w-r4-jkf" id="hRQ-SU-8bX"/>
+                            <outletCollection property="gestureRecognizers" destination="IAl-zl-WCn" appends="YES" id="Vkr-VH-fOV"/>
                         </connections>
                     </collectionView>
                     <connections>
@@ -67,6 +69,12 @@
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHQ-hQ-mX1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer delaysTouchesBegan="YES" id="IAl-zl-WCn">
+                    <connections>
+                        <action selector="handleTap:" destination="h8w-r4-jkf" id="x8M-IO-gsw"/>
+                        <outlet property="delegate" destination="KPx-jz-Zx6" id="GAR-YT-RsH"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="826" y="74"/>
         </scene>

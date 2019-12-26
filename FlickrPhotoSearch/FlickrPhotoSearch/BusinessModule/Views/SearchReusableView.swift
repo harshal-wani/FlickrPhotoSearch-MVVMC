@@ -17,13 +17,13 @@ protocol SaveItemDefaultable: class {
 }
 
 class SearchReusableView: UICollectionReusableView {
-
+    
     @IBOutlet weak var searchTextField: SearchTextField!
     public static let reusableId: String = "SearchReusableView"
     
     weak var delegate: SearchTextDelegate?
     weak var saveDelegate: SaveItemDefaultable?
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         searchTextField.delegate = self
@@ -40,8 +40,8 @@ class SearchReusableView: UICollectionReusableView {
     }
 }
 
-extension SearchReusableView :UITextFieldDelegate {
-
+extension SearchReusableView: UITextFieldDelegate {
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if saveDelegate != nil {
             guard let items = UserDefaults.retrive(key: AppConstants.Defaults.searchHistory) as? [String] else {

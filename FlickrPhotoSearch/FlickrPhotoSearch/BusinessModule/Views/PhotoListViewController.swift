@@ -23,7 +23,6 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
     }()
     
     //MARK: - View life cyle
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = LocalizableStrings.photoListTitle
@@ -37,7 +36,6 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
     }
     
     //MARK: - Private
-
     private func initViewModel() {
         
         // Naive binding
@@ -59,13 +57,18 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
     }
     
     //MARK: - Internal
-
     internal func requestGetPhotos() {
         self.pageIndex += 1
         viewModel.searchPhotos(query: ["text" : self.searchText,
                                        "page" : "\(self.pageIndex)"])
 
     }
+
+    //MARK: - Actions
+    @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    //MARK: - UIScrollViewDelegate
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
@@ -76,5 +79,8 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
                 requestGetPhotos()
             }
         }
+    }
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.view.endEditing(true)
     }
 }
