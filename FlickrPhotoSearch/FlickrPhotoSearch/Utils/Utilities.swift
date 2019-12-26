@@ -32,4 +32,17 @@ class Utilities: NSObject {
         let needsConnection = flags.contains(.connectionRequired)
         return (isReachable && !needsConnection)
     }
+    
+    /// Retrive and save search items to UserDefaults
+    /// - Parameter value: search text to save
+    static func saveSearchItemToUserDefaults(key: String, value: String) {
+        
+        var history = [String]()
+        if UserDefaults.exists(key: key) {
+            history = (UserDefaults.retrive(key: key) as! [String]).filter {$0 != value}
+        }
+        history.insert(value, at: 0)
+        UserDefaults.save(object: history as AnyObject, key: key)
+    }
+
 }

@@ -7,7 +7,7 @@ target 'FlickrPhotoSearch' do
 
   # Pods for FlickrPhotoSearch
 	pod 'SDWebImage', '~> 5.0'
-
+  pod 'SearchTextField'
 
   target 'FlickrPhotoSearchTests' do
     inherit! :search_paths

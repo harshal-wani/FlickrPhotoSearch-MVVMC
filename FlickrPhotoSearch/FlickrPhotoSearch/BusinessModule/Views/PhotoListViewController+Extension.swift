@@ -15,6 +15,7 @@ extension PhotoListViewController {
         if (kind == UICollectionView.elementKindSectionHeader) {
             let headerView:SearchReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchReusableView.reusableId, for: indexPath) as! SearchReusableView
             headerView.delegate = self
+            headerView.saveDelegate = self
             return headerView
         }
 
@@ -71,5 +72,11 @@ extension PhotoListViewController: SearchTextDelegate {
         self.pageIndex = 0
         self.searchText = str
         self.requestGetPhotos()
+    }
+}
+
+extension PhotoListViewController: SaveItemDefaultable {
+    func save(value: String) {
+        Utilities.saveSearchItemToUserDefaults(key: AppConstants.Defaults.searchHistory ,value: value)
     }
 }

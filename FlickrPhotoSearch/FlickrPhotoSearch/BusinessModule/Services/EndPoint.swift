@@ -26,10 +26,10 @@ extension EndPoint {
         /// Default parameters
         var queryParams: [String: String] = [
             "method": "flickr.photos.search",
-            "api_key": AppConstants.flickrAPIKey,
+            "api_key": AppConstants.Keys.flickrAPIKey,
             "format": "json",
             "nojsoncallback": "1",
-            "per_page": AppConstants.perPageLimit
+            "per_page": AppConstants.APIParams.perPageLimit
         ]
         /// Append text and page
         queryParams.merge(list) { (_, new) in new }

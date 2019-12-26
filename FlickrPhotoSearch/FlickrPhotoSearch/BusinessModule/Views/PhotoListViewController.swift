@@ -55,7 +55,7 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
             }
         }
         
-        requestGetPhotos()
+//        requestGetPhotos()
     }
     
     //MARK: - Internal
@@ -76,6 +76,5 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
                 requestGetPhotos()
             }
         }
-        
     }
 }

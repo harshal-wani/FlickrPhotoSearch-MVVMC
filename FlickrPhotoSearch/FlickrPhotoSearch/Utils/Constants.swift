@@ -45,12 +45,22 @@ enum APIError: String, Error {
 struct AppConstants {
     
     //SDK keys
-    static let flickrAPIKey = "acdeef10bb0e01ffe6cae8f0a82fca54"
+    struct Keys {
+        static let flickrAPIKey = "acdeef10bb0e01ffe6cae8f0a82fca54"
+        
+    }
     
     //URL Query Parameters
-    static let perPageLimit = "30"
-    static let servertId = "serverId"
-    static let farm = "farm"
+    struct APIParams {
+        static let perPageLimit = "30"
+        static let servertId = "serverId"
+        static let farm = "farm"
+    }
+
+    //User Defaults
+    struct Defaults {
+        static let searchHistory = "searchHistory"
+    }
 }
 
 struct LocalizableStrings {
