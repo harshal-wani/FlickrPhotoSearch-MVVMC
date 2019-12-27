@@ -28,10 +28,15 @@ extension PhotoListViewController {
     override func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         guard let cell = cell as? FlickrPhotoCell else { return }
         cell.dataCellViewModel = viewModel.getCellViewModel( at: indexPath.row )
+        
+        //Load more on scroll down
+        if indexPath.row == viewModel.numberOfCells - Int(itemsPerRow),
+        !viewModel.isLoading {
+             requestGetPhotos()
+           }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FlickrPhotoCell.reusableId, for: indexPath) as? FlickrPhotoCell else {
             fatalError("\(FlickrPhotoCell.reusableId) not exists!")
         }
@@ -40,30 +45,29 @@ extension PhotoListViewController {
 }
 
 // MARK: - Collection View Flow Layout Delegate
-//extension PhotoListViewController : UICollectionViewDelegateFlowLayout {
-//
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let paddingSpace = sectionInsets.left * (2 + 1)
-//        let availableWidth = collectionView.frame.width - paddingSpace
-//        let widthPerItem = availableWidth / 2
-//
-//        return CGSize(width: widthPerItem, height: widthPerItem)
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return sectionInsets
-//    }
-//
-//    func collectionView(_ collectionView: UICollectionView,
-//                        layout collectionViewLayout: UICollectionViewLayout,
-//                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-//        return sectionInsets.left
-//    }
-//}
+extension PhotoListViewController : UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let padding: CGFloat =  sectionInsets.left * (2 + 1)
+        let collectionViewSize = collectionView.frame.size.width - padding
+        return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets.left
+    }
+
+}
 
 // MARK: - SearchCollectionHeaderView delegate
 extension PhotoListViewController: SearchTextDelegate {
@@ -71,7 +75,7 @@ extension PhotoListViewController: SearchTextDelegate {
     func enteredText(str: String) {
         self.pageIndex = 0
         self.searchText = str
-        self.requestGetPhotos()
+        self.requestGetPhotos(reset: true)
     }
 }
 

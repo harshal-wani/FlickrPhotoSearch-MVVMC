@@ -13,22 +13,22 @@ final class PhotoViewModel: NSObject {
     // Closures
     var showAlertClosure: (() -> ())?
     var reloadVehicleDataClosure: (() -> ())?
-    var updateLoadingStatusClosure: (() -> ())?
     
     let apiService: APIServiceProtocol
 
-    private(set) var isLoading: Bool = false {
-        didSet {
-            self.updateLoadingStatusClosure?()
-        }
-    }
+    private(set) var isLoading: Bool = false 
     var alertMessage: String? {
         didSet {
             self.showAlertClosure?()
         }
     }
-    var numberOfCells: Int {
+    internal var numberOfCells: Int {
         return cellViewModels.count
+    }
+    internal var resetCellViewModels: Bool = false {
+        didSet {
+            self.cellViewModels.removeAll()
+        }
     }
     private var cellViewModels: [DataCellViewModel] = [DataCellViewModel]() {
         didSet {
@@ -84,6 +84,6 @@ struct DataCellViewModel {
     
     init(photo: Photo) {
         self.title = photo.title
-        self.photoURL = "https://farm\(photo.farm).staticflickr.com/\(photo.server)/\(photo.id)_\(photo.secret)_t.jpg"
+        self.photoURL = "https://farm\(photo.farm).staticflickr.com/\(photo.server)/\(photo.id)_\(photo.secret)_m.jpg"
     }
 }

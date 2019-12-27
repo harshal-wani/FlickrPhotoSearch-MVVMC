@@ -17,6 +17,7 @@ final class FlickrPhotoCell: UICollectionViewCell {
     var dataCellViewModel : DataCellViewModel? {
         didSet {
             if let url = dataCellViewModel?.photoURL {
+                imageView.sd_imageTransition = SDWebImageTransition.fade
                 imageView.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "img_placeholder"))
             }
         }

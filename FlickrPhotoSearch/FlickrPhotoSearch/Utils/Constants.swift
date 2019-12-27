@@ -52,7 +52,7 @@ struct AppConstants {
     
     //URL Query Parameters
     struct APIParams {
-        static let perPageLimit = "30"
+        static let perPageLimit = "20"
         static let servertId = "serverId"
         static let farm = "farm"
     }

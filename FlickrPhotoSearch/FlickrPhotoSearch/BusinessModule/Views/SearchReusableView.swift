@@ -38,6 +38,8 @@ class SearchReusableView: UICollectionReusableView {
         searchTextField.theme.separatorColor = UIColor.lightGray.withAlphaComponent(0.5)
         searchTextField.startVisible = true
     }
+    @IBAction func cancelButtonTap(_ sender: UIButton) {
+    }
 }
 
 extension SearchReusableView: UITextFieldDelegate {
