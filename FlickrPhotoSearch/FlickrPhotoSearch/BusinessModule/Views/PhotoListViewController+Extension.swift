@@ -18,7 +18,7 @@ extension PhotoListViewController {
             headerView.saveDelegate = self
             return headerView
         }
-
+        
         return UICollectionReusableView()
     }
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -31,9 +31,9 @@ extension PhotoListViewController {
         
         //Load more on scroll down
         if indexPath.row == viewModel.numberOfCells - Int(itemsPerRow),
-        !viewModel.isLoading {
-             requestGetPhotos()
-           }
+            !viewModel.isLoading {
+            requestGetPhotos()
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -46,7 +46,7 @@ extension PhotoListViewController {
 
 // MARK: - Collection View Flow Layout Delegate
 extension PhotoListViewController : UICollectionViewDelegateFlowLayout {
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -54,22 +54,22 @@ extension PhotoListViewController : UICollectionViewDelegateFlowLayout {
         let collectionViewSize = collectionView.frame.size.width - padding
         return CGSize(width: collectionViewSize/2, height: collectionViewSize/2)
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return sectionInsets
     }
-
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return sectionInsets.left
     }
-
+    
 }
 
-// MARK: - SearchTextDelegate 
+// MARK: - SearchTextDelegate
 extension PhotoListViewController: SearchTextDelegate {
     
     func enteredText(_ str: String) {

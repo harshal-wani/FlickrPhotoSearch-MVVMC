@@ -10,13 +10,9 @@ import Foundation
 
 final class PhotoViewModel: NSObject {
     
-    // Closures
-    var showAlertClosure: (() -> ())?
-    var reloadVehicleDataClosure: (() -> ())?
-    
+    /// Local
     let apiService: APIServiceProtocol
-
-    private(set) var isLoading: Bool = false 
+    private(set) var isLoading: Bool = false
     var alertMessage: String? {
         didSet {
             self.showAlertClosure?()
@@ -36,17 +32,26 @@ final class PhotoViewModel: NSObject {
         }
     }
     
+    // Closure
+    var showAlertClosure: (() -> ())?
+    var reloadVehicleDataClosure: (() -> ())?
+
     init( apiService: APIServiceProtocol = APIService()) {
         self.apiService = apiService
     }
+    
     //MARK: - Private
     
+    /// Create DataCellViewModel for collection view and append to cellViewModels
+    /// - Parameter models: Array of Photo model
     private func processFetchedData(_ models: [Photo]) {
         self.cellViewModels += models.map { DataCellViewModel(photo: $0)  }
     }
     
     //MARK: - Public
     
+    /// Pass search photo text to API service and handle response
+    /// - Parameter query: query parameters in dictionary
     func searchPhotos(query: [String:String]) {
         self.isLoading = true
         
@@ -70,6 +75,9 @@ final class PhotoViewModel: NSObject {
         }
     }
     
+    
+    /// Get DataCellViewModel from cellViewModels
+    /// - Parameter index: query index number
     func getCellViewModel( at index: NSInteger ) -> DataCellViewModel {
         return cellViewModels[index]
     }
@@ -77,7 +85,6 @@ final class PhotoViewModel: NSObject {
 }
 
 // MARK:- DataCellViewModel
-
 struct DataCellViewModel {
     let title: String
     let photoURL: String

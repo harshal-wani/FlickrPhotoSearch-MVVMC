@@ -10,10 +10,12 @@ import UIKit
 import SDWebImage
 
 final class FlickrPhotoCell: UICollectionViewCell {
-    public static let reusableId: String = "FlickrPhotoCell"
-
+    
+    /// Outlet
     @IBOutlet weak var imageView: UIImageView!
     
+    /// Local
+    public static let reusableId: String = "FlickrPhotoCell"
     var dataCellViewModel : DataCellViewModel? {
         didSet {
             if let url = dataCellViewModel?.photoURL {

@@ -17,7 +17,7 @@ protocol SaveItemDefaultable: class {
 }
 
 class SearchReusableView: UICollectionReusableView {
-
+    
     /// Outlet
     @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var searchTextField: SearchTextField!
@@ -76,7 +76,6 @@ extension SearchReusableView: UITextFieldDelegate {
             searchTextField.filterStrings(items)
             searchTextField.startVisibleWithoutInteraction = true
             cancelButton.isEnabled = (textField.text!.count > 0)
-
         }
     }
     

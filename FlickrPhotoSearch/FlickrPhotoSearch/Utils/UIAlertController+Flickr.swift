@@ -11,7 +11,13 @@ import UIKit
 private var window: UIWindow!
 
 extension UIAlertController {
-
+    
+    /// Create UIAlertController
+    /// - Parameter title: Title
+    /// - Parameter message: Message
+    /// - Parameter cancelButton: Cancel button
+    /// - Parameter otherButtons: Array of other buttons
+    /// - Parameter tapHandler: Send tap handler
     class func showAlert(title: String,
                          message: String,
                          cancelButton: String?,
@@ -37,6 +43,9 @@ extension UIAlertController {
         alert.present(animated: true, completion: nil)
     }
     
+    /// Present UIAlertController on windowLevel
+    /// - Parameter animated: Flag to show with animate
+    /// - Parameter completion: Completion handler
     func present(animated: Bool,
                  completion: (() -> Void)?) {
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -46,6 +55,7 @@ extension UIAlertController {
         window.rootViewController?.present(self, animated: animated,
                                            completion: completion)
     }
+    
     open override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         window = nil

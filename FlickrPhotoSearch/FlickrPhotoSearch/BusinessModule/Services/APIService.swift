@@ -16,28 +16,16 @@ final class APIService: APIServiceProtocol {
         
     func getDataFromURL(_ endPoint: EndPoint, completion: @escaping (Result<Data, APIError>) -> ()) {
         
-        
-//        let url = Bundle.main.url(forResource: "MockPhotoList", withExtension: "json")!
-//        do {
-//            let data = try Data(contentsOf: url)
-//            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-//            print(json)
-//            completion(.success(data))
-//        } catch {
-//            print("ERROR")
-//        }
-        
-        
         guard let url = endPoint.url else {
             return completion(.failure(APIError.invalidURL))
         }
+        /// Check is internet available
         if !Utilities.isInternetAvailable() {
             completion(.failure(APIError.noNetwork))
             return
         }
-        print(url)
 
-        //Make request
+        /// Make request
         let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
 
             guard error == nil else {
@@ -52,12 +40,9 @@ final class APIService: APIServiceProtocol {
                 completion(.failure(APIError.checkErrorCode((response as? HTTPURLResponse)!.statusCode)))
                 return
             }
-//            let json = try? JSONSerialization.jsonObject(with: data!, options: [])
-//            print(json)
             completion(.success(data!))
         }
         task.resume()
-//
     }
     
 }

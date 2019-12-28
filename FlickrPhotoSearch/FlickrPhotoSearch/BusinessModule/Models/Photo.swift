@@ -9,13 +9,13 @@
 import Foundation
 
 struct Photo: Decodable {
-
+    
     let id: String
     let title: String
     let farm: Int
     let server: String
     let secret: String
-
+    
 }
 struct PhotosResponse: Decodable {
     let page: Int
@@ -33,11 +33,10 @@ struct PhotosResponse: Decodable {
         
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let response = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .photos)
-
         page = try response.decode(Int.self, forKey: .page)
         pages = try response.decode(Int.self, forKey: .pages)
         photoList = try response.decode([Photo].self, forKey: .photoList)
-
+        
     }
-
+    
 }

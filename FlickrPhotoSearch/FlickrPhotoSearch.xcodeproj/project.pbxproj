@@ -25,7 +25,6 @@
 		C9E12AEF239B867E00F6B91B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9E12AE7239B867E00F6B91B /* Assets.xcassets */; };
 		C9E12AF0239B867E00F6B91B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E12AE8239B867E00F6B91B /* LaunchScreen.storyboard */; };
 		C9E12AF1239B867E00F6B91B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9E12AEA239B867E00F6B91B /* Main.storyboard */; };
-		C9E52FDA239BF25800F00EA8 /* MockPhotoList.json in Resources */ = {isa = PBXBuildFile; fileRef = C9E52FD9239BF25800F00EA8 /* MockPhotoList.json */; };
 		C9EEB4F4239BBA4D005D7742 /* FlickrPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EEB4F3239BBA4D005D7742 /* FlickrPhotoCell.swift */; };
 		C9EEB4F6239BBAA2005D7742 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EEB4F5239BBAA2005D7742 /* Photo.swift */; };
 		C9EEB4F8239BBB9E005D7742 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9EEB4F7239BBB9E005D7742 /* PhotoViewModel.swift */; };
@@ -72,7 +71,6 @@
 		C9E12AE9239B867E00F6B91B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C9E12AEB239B867E00F6B91B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C9E12AEC239B867E00F6B91B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C9E52FD9239BF25800F00EA8 /* MockPhotoList.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockPhotoList.json; sourceTree = "<group>"; };
 		C9EEB4F3239BBA4D005D7742 /* FlickrPhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrPhotoCell.swift; sourceTree = "<group>"; };
 		C9EEB4F5239BBAA2005D7742 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		C9EEB4F7239BBB9E005D7742 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
@@ -147,7 +145,6 @@
 		C9E12AB6239B7FA000F6B91B /* FlickrPhotoSearch */ = {
 			isa = PBXGroup;
 			children = (
-				C9E52FD8239BF24D00F00EA8 /* MockData */,
 				C9E12ADE239B867E00F6B91B /* BusinessModule */,
 				C9E12ADD239B867E00F6B91B /* Extensions */,
 				C9E12ADB239B867E00F6B91B /* Main */,
@@ -273,14 +270,6 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		C9E52FD8239BF24D00F00EA8 /* MockData */ = {
-			isa = PBXGroup;
-			children = (
-				C9E52FD9239BF25800F00EA8 /* MockPhotoList.json */,
-			);
-			path = MockData;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -368,7 +357,6 @@
 				C9E12AF0239B867E00F6B91B /* LaunchScreen.storyboard in Resources */,
 				C9E12AEF239B867E00F6B91B /* Assets.xcassets in Resources */,
 				C9C8EDB223A4C02D00C0C259 /* FlickrPhotoCell.xib in Resources */,
-				C9E52FDA239BF25800F00EA8 /* MockPhotoList.json in Resources */,
 				C9E12AF1239B867E00F6B91B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
