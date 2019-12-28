@@ -10,18 +10,18 @@ import Foundation
 
 
 extension UserDefaults {
-    // Check key exists
+    /// Check key exists
     static func exists(key: String) -> Bool {
         return self.standard.object(forKey: key) != nil
     }
-    //Save
+    /// Save
     static func save(object: AnyObject?, key: String) {
         if (object != nil) {
             self.standard.set(object, forKey: key)
         }
         self.standard.synchronize()
     }
-    //Get
+    /// Get
     static func retrive(key : String) -> AnyObject? {
         if let name = self.standard.value(forKey: key) {
             return name as AnyObject

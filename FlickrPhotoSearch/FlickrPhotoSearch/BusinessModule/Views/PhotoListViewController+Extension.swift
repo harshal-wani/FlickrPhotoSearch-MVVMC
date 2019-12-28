@@ -69,10 +69,10 @@ extension PhotoListViewController : UICollectionViewDelegateFlowLayout {
 
 }
 
-// MARK: - SearchCollectionHeaderView delegate
+// MARK: - SearchTextDelegate 
 extension PhotoListViewController: SearchTextDelegate {
     
-    func enteredText(str: String) {
+    func enteredText(_ str: String) {
         self.pageIndex = 0
         self.searchText = str
         self.requestGetPhotos(reset: true)
@@ -80,7 +80,7 @@ extension PhotoListViewController: SearchTextDelegate {
 }
 
 extension PhotoListViewController: SaveItemDefaultable {
-    func save(value: String) {
+    func save(_ value: String) {
         Utilities.saveSearchItemToUserDefaults(key: AppConstants.Defaults.searchHistory ,value: value)
     }
 }

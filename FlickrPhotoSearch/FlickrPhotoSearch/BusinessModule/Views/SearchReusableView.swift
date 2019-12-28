@@ -10,35 +10,59 @@ import UIKit
 import SearchTextField
 
 protocol SearchTextDelegate: class {
-    func enteredText(str: String)
+    func enteredText(_ str: String)
 }
 protocol SaveItemDefaultable: class {
-    func save(value: String)
+    func save(_ value: String)
 }
 
 class SearchReusableView: UICollectionReusableView {
-    
+
+    /// Outlet
+    @IBOutlet weak var cancelButton: UIButton!
     @IBOutlet weak var searchTextField: SearchTextField!
-    public static let reusableId: String = "SearchReusableView"
     
+    /// Local
+    public static let reusableId: String = "SearchReusableView"
     weak var delegate: SearchTextDelegate?
     weak var saveDelegate: SaveItemDefaultable?
     
+    
+    /// Initialization
     override func awakeFromNib() {
         super.awakeFromNib()
-        searchTextField.delegate = self
-        if saveDelegate != nil {
-            configureSimpleSearchTextField()
-        }
+        configureSearchTextField()
     }
     
-    fileprivate func configureSimpleSearchTextField() {
+    //MARK: - Private
+    fileprivate func configureSearchTextField() {
+        searchTextField.delegate = self
+        searchTextField.setIcon(UIImage(named: "ic_search"))
+        searchTextField.theme.font = UIFont.systemFont(ofSize: 14)
+        searchTextField.theme.bgColor = UIColor.white
+        searchTextField.theme.borderColor = UIColor.lightGray.withAlphaComponent(0.5)
         searchTextField.theme.cellHeight = 50
         searchTextField.maxResultsListHeight = 230
         searchTextField.theme.separatorColor = UIColor.lightGray.withAlphaComponent(0.5)
-        searchTextField.startVisible = true
+        searchTextField.itemSelectionHandler = {item, itemPosition in
+            self.searchTextField.text = item[itemPosition].title
+            self.searchItem()
+        }
     }
+    
+    fileprivate func searchItem() {
+        guard let text = searchTextField.text else {
+            return
+        }
+        searchTextField.resignFirstResponder()
+        saveDelegate?.save(text)
+        delegate?.enteredText(text)
+    }
+    
+    //MARK: - Action
     @IBAction func cancelButtonTap(_ sender: UIButton) {
+        searchTextField.text = ""
+        searchTextField.becomeFirstResponder()
     }
 }
 
@@ -50,14 +74,23 @@ extension SearchReusableView: UITextFieldDelegate {
                 return
             }
             searchTextField.filterStrings(items)
+            searchTextField.startVisibleWithoutInteraction = true
+            cancelButton.isEnabled = (textField.text!.count > 0)
+
         }
     }
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let text = textField.text else { return true }
+        let newLength = text.count + string.count - range.length
+        cancelButton.isEnabled = (newLength > 0)
+        return true
+        
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        if let text = textField.text {
-            saveDelegate?.save(value: text)
-            delegate?.enteredText(str: text)
+        if textField.text != nil {
+            searchItem()
         }
         return true
     }

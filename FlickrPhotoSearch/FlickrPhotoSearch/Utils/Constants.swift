@@ -44,20 +44,20 @@ enum APIError: String, Error {
 /// App Constants
 struct AppConstants {
     
-    //SDK keys
+    /// SDK keys
     struct Keys {
         static let flickrAPIKey = "acdeef10bb0e01ffe6cae8f0a82fca54"
         
     }
     
-    //URL Query Parameters
+    /// URL Query Parameters
     struct APIParams {
         static let perPageLimit = "20"
         static let servertId = "serverId"
         static let farm = "farm"
     }
 
-    //User Defaults
+    /// User Defaults
     struct Defaults {
         static let searchHistory = "searchHistory"
     }
@@ -66,7 +66,7 @@ struct AppConstants {
 struct LocalizableStrings {
     
     /// Screen title
-    static let photoListTitle = "Chat"
+    static let photoListTitle = "Flickr Photo"
     
     /// Common
     static let alert = "Alert"
