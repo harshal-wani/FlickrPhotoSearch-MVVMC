@@ -74,8 +74,7 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
             viewModel.resetCellViewModels = true
         }
         self.pageIndex += 1
-        viewModel.searchPhotos(query: ["text" : self.searchText,
-                                       "page" : "\(self.pageIndex)"])
+        viewModel.searchPhotos(text: self.searchText, page: self.pageIndex)
 
     }
 

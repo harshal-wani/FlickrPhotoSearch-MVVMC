@@ -55,6 +55,8 @@ struct AppConstants {
         static let perPageLimit = "20"
         static let servertId = "serverId"
         static let farm = "farm"
+        static let format = "json"
+        static let nojsoncallback = "1"
     }
 
     /// User Defaults

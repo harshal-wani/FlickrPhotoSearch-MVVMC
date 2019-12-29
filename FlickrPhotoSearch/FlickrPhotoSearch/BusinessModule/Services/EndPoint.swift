@@ -16,24 +16,12 @@ protocol PhotoSearchable {
 
 struct EndPoint {
     let path: String
-    var queryItem: [String: String]
+    var queryItem: [String: Any]
 }
 
 extension EndPoint {
 
-    static func searchPhoto(list: [String:String] = [:]) -> EndPoint {
-        
-        /// Default parameters
-        var queryParams: [String: String] = [
-            "method": "flickr.photos.search",
-            "api_key": AppConstants.Keys.flickrAPIKey,
-            "format": "json",
-            "nojsoncallback": "1",
-            "per_page": AppConstants.APIParams.perPageLimit
-        ]
-        /// Append text and page
-        queryParams.merge(list) { (_, new) in new }
-        
+    static func searchPhoto(queryParams: [String:Any] = [:]) -> EndPoint {
         return EndPoint(path: "/services/rest", queryItem: queryParams)
     }
 
@@ -52,7 +40,8 @@ extension EndPoint {
 
 extension URLComponents {
     
-    mutating func setQueryItems(with parameters: [String: String]) {
-        self.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value) }
+    mutating func setQueryItems(with parameters: [String: Any]) {
+        self.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value as? String) }
     }
 }
+

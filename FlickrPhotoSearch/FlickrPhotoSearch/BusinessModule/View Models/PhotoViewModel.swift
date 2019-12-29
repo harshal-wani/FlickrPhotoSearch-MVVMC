@@ -52,15 +52,18 @@ final class PhotoViewModel: NSObject {
     
     /// Pass search photo text to API service and handle response
     /// - Parameter query: query parameters in dictionary
-    func searchPhotos(query: [String:String]) {
+    func searchPhotos(text: String, page: Int) {
         self.isLoading = true
         
-        self.apiService.getDataFromURL(.searchPhoto(list: query)) { [weak self] (result) in
+        /// Create Dictionary using Request Model
+        let requestParam = SearchPhotoRequest(text: text, page: page).asDictionary()
+        
+        self.apiService.getDataFromURL(.searchPhoto(queryParams: requestParam)) { [weak self] (result) in
             self?.isLoading = false
             switch result {
             case .success(let data):
                 do {
-                    let photosResponse = try JSONDecoder().decode(PhotosResponse.self, from: data)
+                    let photosResponse = try JSONDecoder().decode(SearchPhotosResponse.self, from: data)
                     guard !photosResponse.photoList.isEmpty else {
                         self?.alertMessage = APIError.noData.rawValue
                         return

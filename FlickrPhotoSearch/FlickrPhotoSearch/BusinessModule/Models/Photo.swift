@@ -9,17 +9,13 @@
 import Foundation
 
 struct Photo: Decodable {
-    
-    let id: String
-    let title: String
+    let id, title, server, secret: String
     let farm: Int
-    let server: String
-    let secret: String
     
 }
-struct PhotosResponse: Decodable {
-    let page: Int
-    let pages: Int
+
+struct SearchPhotosResponse: Decodable {
+    let page, pages: Int
     let photoList: [Photo]
     
     enum CodingKeys: String, CodingKey {
@@ -38,5 +34,15 @@ struct PhotosResponse: Decodable {
         photoList = try response.decode([Photo].self, forKey: .photoList)
         
     }
+}
+
+struct SearchPhotoRequest: Encodable {
+    let method = "flickr.photos.search"
+    let api_key = AppConstants.Keys.flickrAPIKey
+    let format = AppConstants.APIParams.format
+    let nojsoncallback = AppConstants.APIParams.nojsoncallback
+    let per_page = AppConstants.APIParams.perPageLimit
     
+    let text: String
+    var page: Int
 }
