@@ -19,9 +19,10 @@ C- Coordinator for managing app navigation flow.
 Swift 5
 
 ### Required third party libraries
-SDWebImage
+[SDWebImage](https://github.com/SDWebImage/SDWebImage)
+[SearchTextField](https://github.com/apasccon/SearchTextField)
 
-SearchTextField
+
 
 ### Getting Started
 • Clone repo
