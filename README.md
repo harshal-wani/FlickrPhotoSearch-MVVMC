@@ -25,8 +25,11 @@ SearchTextField
 
 ### Getting Started
 • Clone repo
+
 • In terminal, navigate to root folder of repo
+
 • Run below command
+
 ```sh
 pod install
 ```
