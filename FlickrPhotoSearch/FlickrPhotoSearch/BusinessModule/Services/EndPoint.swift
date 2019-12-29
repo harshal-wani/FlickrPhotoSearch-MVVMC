@@ -15,6 +15,7 @@ protocol PhotoSearchable {
 }
 
 struct EndPoint {
+    let method: HTTPMethod
     let path: String
     var queryItem: [String: Any]
 }
@@ -22,7 +23,7 @@ struct EndPoint {
 extension EndPoint {
 
     static func searchPhoto(queryParams: [String:Any] = [:]) -> EndPoint {
-        return EndPoint(path: "/services/rest", queryItem: queryParams)
+        return EndPoint(method: .get, path: "/services/rest", queryItem: queryParams)
     }
 
 }
@@ -41,7 +42,7 @@ extension EndPoint {
 extension URLComponents {
     
     mutating func setQueryItems(with parameters: [String: Any]) {
-        self.queryItems = parameters.map { URLQueryItem(name: $0.key, value: $0.value as? String) }
+        self.queryItems = parameters.map { URLQueryItem(name: $0.key, value: "\($0.value)") }
     }
 }
 

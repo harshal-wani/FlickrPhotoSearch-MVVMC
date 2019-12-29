@@ -44,5 +44,5 @@ struct SearchPhotoRequest: Encodable {
     let per_page = AppConstants.APIParams.perPageLimit
     
     let text: String
-    var page: Int
+    let page: Int
 }

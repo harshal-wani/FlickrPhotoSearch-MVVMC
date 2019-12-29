@@ -24,9 +24,12 @@ final class APIService: APIServiceProtocol {
             completion(.failure(APIError.noNetwork))
             return
         }
+        /// Set URLRequest and type
+        var request = URLRequest(url: url)
+        request.httpMethod = endPoint.method.rawValue
 
         /// Make request
-        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 
             guard error == nil else {
                 completion(.failure(.invalidURL))

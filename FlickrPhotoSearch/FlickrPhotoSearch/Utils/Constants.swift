@@ -15,6 +15,12 @@ struct APP_URL {
     static let host = "api.flickr.com"
 }
 
+/// HTTPMethod type
+enum HTTPMethod: String {
+    case get = "GET"
+    case post = "POST"
+}
+
 /// Error
 enum APIError: String, Error {
     case invalidURL             = "Invalid url"
