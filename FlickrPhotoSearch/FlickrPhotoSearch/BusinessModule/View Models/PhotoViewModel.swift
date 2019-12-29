@@ -28,13 +28,13 @@ final class PhotoViewModel: NSObject {
     }
     private var cellViewModels: [DataCellViewModel] = [DataCellViewModel]() {
         didSet {
-            self.reloadVehicleDataClosure?()
+            self.reloadPhotoClosure?()
         }
     }
     
     // Closure
     var showAlertClosure: (() -> ())?
-    var reloadVehicleDataClosure: (() -> ())?
+    var reloadPhotoClosure: (() -> ())?
 
     init( apiService: APIServiceProtocol = APIService()) {
         self.apiService = apiService

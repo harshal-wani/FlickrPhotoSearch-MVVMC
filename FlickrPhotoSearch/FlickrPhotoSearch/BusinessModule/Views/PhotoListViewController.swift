@@ -50,7 +50,7 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
             }
         }
         
-        viewModel.reloadVehicleDataClosure = { [weak self] () in
+        viewModel.reloadPhotoClosure = { [weak self] () in
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
