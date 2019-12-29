@@ -22,11 +22,6 @@
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
-                        <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" id="MOU-Cv-Lcj">
-                            <rect key="frame" x="0.0" y="-44" width="414" height="896"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <gestureRecognizers/>
-                        </activityIndicatorView>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="MbL-F0-OaT">
                                 <rect key="frame" x="0.0" y="40" width="120" height="120"/>
@@ -83,9 +78,6 @@
                             <outletCollection property="gestureRecognizers" destination="IAl-zl-WCn" appends="YES" id="Vkr-VH-fOV"/>
                         </connections>
                     </collectionView>
-                    <connections>
-                        <outlet property="activityIndicator" destination="MOU-Cv-Lcj" id="Mhc-PJ-mAK"/>
-                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sHQ-hQ-mX1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <tapGestureRecognizer delaysTouchesBegan="YES" id="IAl-zl-WCn">

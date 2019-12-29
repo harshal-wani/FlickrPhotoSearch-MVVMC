@@ -9,9 +9,6 @@
 import UIKit
 
 final class PhotoListViewController: UICollectionViewController, Storyboarded, PhotoSearchable {
-
-    /// Outlet
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     /// Local
     internal let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
