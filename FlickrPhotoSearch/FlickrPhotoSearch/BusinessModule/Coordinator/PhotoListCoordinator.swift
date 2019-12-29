@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PhotoListCoordinator: Coordinator {
+final class PhotoListCoordinator: Coordinator {
     
     private var presenter: UINavigationController
     private var photoListViewController: PhotoListViewController?

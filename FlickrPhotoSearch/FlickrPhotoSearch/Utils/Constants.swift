@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 /// API Constants
 struct APP_URL {
     static let scheme = "https"
@@ -64,7 +63,21 @@ struct AppConstants {
         static let format = "json"
         static let nojsoncallback = "1"
     }
-
+    
+    enum size: String {
+        case url_sq = "s"   //small square 75x75
+        case url_q = "q"    //large square 150x150
+        case url_t = "t"    //thumbnail, 100 on longest side
+        case url_s = "m"    //small, 240 on longest side
+        case url_n = "n"    //small, 320 on longest side
+        case url_m = "-"    //medium, 500 on longest side
+        case url_z = "z"    //medium 640, 640 on longest side
+        case url_c = "c"    //medium 800, 800 on longest side†
+        case url_l = "b"    //large, 1024 on longest side*
+        case url_h = "h"    //large 1600, 1600 on longest side†
+        case url_k = "k"    //large 2048, 2048 on longest side†
+        case url_o = "o"    //original image, either a jpg, gif or png, depending on source format
+    }
     /// User Defaults
     struct Defaults {
         static let searchHistory = "searchHistory"
@@ -83,3 +96,4 @@ struct LocalizableStrings {
     static let cancel = "Cancel"
     
 }
+

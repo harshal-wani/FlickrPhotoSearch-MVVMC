@@ -13,11 +13,6 @@ final class PhotoViewModel: NSObject {
     /// Local
     let apiService: APIServiceProtocol
     private(set) var isLoading: Bool = false
-    var alertMessage: String? {
-        didSet {
-            self.showAlertClosure?()
-        }
-    }
     internal var numberOfCells: Int {
         return cellViewModels.count
     }
@@ -28,13 +23,13 @@ final class PhotoViewModel: NSObject {
     }
     private var cellViewModels: [DataCellViewModel] = [DataCellViewModel]() {
         didSet {
-            self.reloadPhotoClosure?()
+            self.updataPhotoData?()
         }
     }
     
     // Closure
-    var showAlertClosure: (() -> ())?
-    var reloadPhotoClosure: (() -> ())?
+    var showAlert: ((String) -> Void)?
+    var updataPhotoData: (() -> ())?
 
     init( apiService: APIServiceProtocol = APIService()) {
         self.apiService = apiService
@@ -57,7 +52,6 @@ final class PhotoViewModel: NSObject {
         
         /// Create Dictionary using Request Model
         let requestParam = SearchPhotoRequest(text: text, page: page).asDictionary()
-        
         self.apiService.getDataFromURL(.searchPhoto(queryParams: requestParam)) { [weak self] (result) in
             self?.isLoading = false
             switch result {
@@ -65,15 +59,16 @@ final class PhotoViewModel: NSObject {
                 do {
                     let photosResponse = try JSONDecoder().decode(SearchPhotosResponse.self, from: data)
                     guard !photosResponse.photoList.isEmpty else {
-                        self?.alertMessage = APIError.noData.rawValue
+                        self?.showAlert?(APIError.noData.rawValue)
                         return
                     }
                     self?.processFetchedData(photosResponse.photoList)
                 } catch {
-                    self?.alertMessage = APIError.decodeError.rawValue
+                    self?.showAlert?(APIError.decodeError.rawValue)
                 }
             case .failure(let err):
-                self?.alertMessage = err.rawValue
+                self?.showAlert?(err.rawValue)
+
             }
         }
     }
@@ -94,6 +89,6 @@ struct DataCellViewModel {
     
     init(photo: Photo) {
         self.title = photo.title
-        self.photoURL = "https://farm\(photo.farm).staticflickr.com/\(photo.server)/\(photo.id)_\(photo.secret)_m.jpg"
+        self.photoURL = "https://farm\(photo.farm).staticflickr.com/\(photo.server)/\(photo.id)_\(photo.secret)_\(AppConstants.size.url_s.rawValue).jpg"
     }
 }

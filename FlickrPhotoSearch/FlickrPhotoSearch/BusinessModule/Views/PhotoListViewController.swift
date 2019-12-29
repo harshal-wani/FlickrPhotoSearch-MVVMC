@@ -26,7 +26,7 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
         super.viewDidLoad()
         self.title = LocalizableStrings.photoListTitle
         configureCollectionView()
-        initViewModel()
+        viewModelClosures()
     }
     
     //MARK: - Private
@@ -37,17 +37,14 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
             flowLayout.sectionHeadersPinToVisibleBounds = true
         }
     }
-    private func initViewModel() {
+    private func viewModelClosures() {
         
-        viewModel.showAlertClosure = { [weak self] () in
+        viewModel.showAlert = { (message) in
             DispatchQueue.main.async {
-                if let message = self?.viewModel.alertMessage {
                     UIAlertController.showAlert(title: LocalizableStrings.error, message: message, cancelButton: LocalizableStrings.ok)
-                }
             }
         }
-        
-        viewModel.reloadPhotoClosure = { [weak self] () in
+        viewModel.updataPhotoData = { [weak self] () in
             DispatchQueue.main.async {
                 self?.collectionView.reloadData()
             }
