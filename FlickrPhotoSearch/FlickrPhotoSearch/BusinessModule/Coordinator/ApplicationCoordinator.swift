@@ -18,6 +18,7 @@ final class ApplicationCoordinator: Coordinator {
         self.window = window
         rootViewController = UINavigationController()
         rootViewController.navigationBar.prefersLargeTitles = true
+        rootViewController.navigationBar.barStyle = .black
         photoListCoordinator = PhotoListCoordinator(presenter: rootViewController)
     }
     
