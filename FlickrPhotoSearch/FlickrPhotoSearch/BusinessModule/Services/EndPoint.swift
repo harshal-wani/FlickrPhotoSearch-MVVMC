@@ -10,7 +10,6 @@ import Foundation
 
 /// Search photo params
 protocol PhotoSearchable {
-    var pageIndex: Int { get set }
     var searchText : String { get set }
 }
 

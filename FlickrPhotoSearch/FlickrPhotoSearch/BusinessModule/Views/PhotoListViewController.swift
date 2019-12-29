@@ -18,7 +18,6 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
     }()
     
     /// PhotoSearchable
-    var pageIndex = 0
     var searchText = "fruit"
     
     //MARK: - View life cyle
@@ -67,8 +66,7 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded, P
         if reset == true {
             viewModel.resetCellViewModels = true
         }
-        self.pageIndex += 1
-        viewModel.searchPhotos(text: self.searchText, page: self.pageIndex)
+        viewModel.searchPhotos(text: self.searchText)
 
     }
 

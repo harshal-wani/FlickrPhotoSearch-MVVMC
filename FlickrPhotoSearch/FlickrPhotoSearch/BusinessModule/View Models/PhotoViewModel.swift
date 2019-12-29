@@ -13,11 +13,13 @@ final class PhotoViewModel: NSObject {
     /// Local
     let apiService: APIServiceProtocol
     private(set) var isLoading: Bool = false
+    private var pageNo = 0
     internal var numberOfCells: Int {
         return cellViewModels.count
     }
     internal var resetCellViewModels: Bool = false {
         didSet {
+            self.pageNo = 0
             self.cellViewModels.removeAll()
         }
     }
@@ -47,11 +49,11 @@ final class PhotoViewModel: NSObject {
     
     /// Pass search photo text to API service and handle response
     /// - Parameter query: query parameters in dictionary
-    func searchPhotos(text: String, page: Int) {
+    func searchPhotos(text: String) {
         self.isLoading = true
-        
+        self.pageNo += 1
         /// Create Dictionary using Request Model
-        let requestParam = SearchPhotoRequest(text: text, page: page).asDictionary()
+        let requestParam = SearchPhotoRequest(text: text, page: self.pageNo).asDictionary()
         self.apiService.getDataFromURL(.searchPhoto(queryParams: requestParam)) { [weak self] (result) in
             self?.isLoading = false
             switch result {

@@ -67,7 +67,6 @@ extension PhotoListViewController : UICollectionViewDelegateFlowLayout {
 extension PhotoListViewController: SearchTextDelegate {
     
     func enteredText(_ str: String) {
-        self.pageIndex = 0
         self.searchText = str
         self.requestGetPhotos(reset: true)
     }
