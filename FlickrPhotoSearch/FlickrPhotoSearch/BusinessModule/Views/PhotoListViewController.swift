@@ -8,18 +8,16 @@
 
 import UIKit
 
-final class PhotoListViewController: UICollectionViewController, Storyboarded, PhotoSearchable {
+final class PhotoListViewController: UICollectionViewController, Storyboarded {
     
     /// Local
     internal let sectionInsets = UIEdgeInsets(top: 10.0, left: 10.0, bottom: 10.0, right: 10.0)
     internal let itemsPerRow: CGFloat = 2
+    internal var searchText = ""
     internal lazy var viewModel: PhotoViewModel = {
        return PhotoViewModel()
     }()
-    
-    /// PhotoSearchable
-    var searchText = "fruit"
-    
+        
     //MARK: - View life cyle
     override func viewDidLoad() {
         super.viewDidLoad()

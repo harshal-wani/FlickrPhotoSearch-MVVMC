@@ -8,11 +8,6 @@
 
 import Foundation
 
-/// Search photo params
-protocol PhotoSearchable {
-    var searchText : String { get set }
-}
-
 struct EndPoint {
     let method: HTTPMethod
     let path: String
