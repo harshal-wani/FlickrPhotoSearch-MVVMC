@@ -46,6 +46,7 @@ class SearchReusableView: UICollectionReusableView {
         searchTextField.theme.separatorColor = UIColor.lightGray.withAlphaComponent(0.5)
         searchTextField.itemSelectionHandler = {item, itemPosition in
             self.searchTextField.text = item[itemPosition].title
+            self.cancelButton.isEnabled = (self.searchTextField.text!.count > 0)
             self.searchItem()
         }
     }
