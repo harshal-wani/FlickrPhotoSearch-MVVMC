@@ -27,7 +27,10 @@ final class APIService: APIServiceProtocol {
         /// Set URLRequest and type
         var request = URLRequest(url: url)
         request.httpMethod = endPoint.method.rawValue
-
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        if let data = endPoint.data {
+            request.httpBody = data
+        }
         /// Make request
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 

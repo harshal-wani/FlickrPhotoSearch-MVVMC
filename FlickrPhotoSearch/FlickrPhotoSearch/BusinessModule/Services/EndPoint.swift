@@ -11,15 +11,30 @@ import Foundation
 struct EndPoint {
     let method: HTTPMethod
     let path: String
-    var queryItem: [String: Any]
+    var queryItem: [String: Any]?
+    var data: Data?
+    
+    /// GET request
+    private init(method: HTTPMethod, path: String, queryItem: [String: Any]) {
+        self.method = method
+        self.path = path
+        self.queryItem = queryItem
+    }
+    
+    /// POST request
+    private init(method: HTTPMethod, path: String, data: Data) {
+        self.method = method
+        self.path = path
+        self.data = data
+    }
+    
 }
 
 extension EndPoint {
 
-    static func searchPhoto(queryParams: [String:Any] = [:]) -> EndPoint {
+    static func searchPhoto(queryParams: [String:Any]) -> EndPoint {
         return EndPoint(method: .get, path: "/services/rest", queryItem: queryParams)
     }
-
 }
 
 extension EndPoint {
@@ -28,7 +43,9 @@ extension EndPoint {
         components.scheme = APP_URL.scheme
         components.host = APP_URL.host
         components.path = path
-        components.setQueryItems(with: queryItem)
+        if queryItem?.isEmpty == false {
+            components.setQueryItems(with: queryItem!)
+        }
         return components.url
     }
 }
