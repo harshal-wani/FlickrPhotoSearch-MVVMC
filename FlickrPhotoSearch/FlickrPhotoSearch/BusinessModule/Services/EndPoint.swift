@@ -10,9 +10,9 @@ import Foundation
 
 struct EndPoint {
     let method: HTTPMethod
-    let path: String
-    var queryItem: [String: Any]?
-    var data: Data?
+    private let path: String
+    private(set) var queryItem: [String: Any]?
+    private(set) var data: Data?
     
     /// GET request
     private init(method: HTTPMethod, path: String, queryItem: [String: Any]) {

@@ -1,5 +1,5 @@
 //
-//  Codable.swift
+//  Codable+Flickr.swift
 //  FlickrPhotoSearch
 //
 //  Created by Harshal Wani on 29/12/19.
