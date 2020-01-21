@@ -24,7 +24,7 @@ class SearchReusableView: UICollectionReusableView {
     
     /// Local
     public static let reusableId: String = "SearchReusableView"
-    weak var delegate: SearchTextDelegate?
+    weak var searchTextDelegate: SearchTextDelegate?
     weak var saveDelegate: SaveItemDefaultable?
     
     
@@ -57,7 +57,7 @@ class SearchReusableView: UICollectionReusableView {
         }
         searchTextField.resignFirstResponder()
         saveDelegate?.save(text)
-        delegate?.enteredText(text)
+        searchTextDelegate?.enteredText(text)
     }
     
     //MARK: - Action

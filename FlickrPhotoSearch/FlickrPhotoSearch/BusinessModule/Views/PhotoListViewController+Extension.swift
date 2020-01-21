@@ -14,7 +14,7 @@ extension PhotoListViewController {
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (kind == UICollectionView.elementKindSectionHeader) {
             let headerView:SearchReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchReusableView.reusableId, for: indexPath) as! SearchReusableView
-            headerView.delegate = self
+            headerView.searchTextDelegate = self
             headerView.saveDelegate = self
             return headerView
         }
