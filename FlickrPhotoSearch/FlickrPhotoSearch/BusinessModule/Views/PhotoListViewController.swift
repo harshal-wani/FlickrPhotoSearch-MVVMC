@@ -33,7 +33,7 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded {
     
     //MARK: - Private
     private func configureCollectionView() {
-        FlickrPhotoCell.register(for: collectionView)
+        collectionView.register(FlickrPhotoCell.self)
         if let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             flowLayout.headerReferenceSize = CGSize(width: self.collectionView.frame.size.width, height: 40)
             flowLayout.sectionHeadersPinToVisibleBounds = true

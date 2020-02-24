@@ -16,7 +16,7 @@ protocol SaveItemDefaultable: class {
     func save(_ value: String)
 }
 
-class SearchReusableView: UICollectionReusableView {
+class SearchReusableView: UICollectionReusableView, ReusableView, NibLoadableView {
     
     /// Outlet
     @IBOutlet weak var cancelButton: UIButton!

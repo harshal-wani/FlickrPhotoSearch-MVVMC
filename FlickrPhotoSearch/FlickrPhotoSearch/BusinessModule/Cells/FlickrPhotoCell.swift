@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-final class FlickrPhotoCell: UICollectionViewCell {
+final class FlickrPhotoCell: UICollectionViewCell, ReusableView, NibLoadableView {
     
     /// Outlet
     @IBOutlet weak var imageView: UIImageView!

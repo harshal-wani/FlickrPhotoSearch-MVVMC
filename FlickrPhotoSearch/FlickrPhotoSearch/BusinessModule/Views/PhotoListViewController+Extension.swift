@@ -13,7 +13,7 @@ extension PhotoListViewController {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if (kind == UICollectionView.elementKindSectionHeader) {
-            let headerView:SearchReusableView =  collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SearchReusableView.reusableId, for: indexPath) as! SearchReusableView
+            let headerView:SearchReusableView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, indexPath: indexPath)
             headerView.searchTextDelegate = self
             headerView.saveDelegate = self
             return headerView
@@ -37,9 +37,7 @@ extension PhotoListViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FlickrPhotoCell.reusableId, for: indexPath) as? FlickrPhotoCell else {
-            fatalError("\(FlickrPhotoCell.reusableId) not exists!")
-        }
+        let cell: FlickrPhotoCell = collectionView.dequeueReusableCell(for: indexPath)
         return cell
     }
     
