@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol PhotoListVCDelegate: class {
+    func photoListVC(_ controller: PhotoListViewController, didSelect photo: String)
+}
+
 final class PhotoListViewController: UICollectionViewController, Storyboarded {
     
     /// Local
@@ -15,9 +19,10 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded {
     internal let itemsPerRow: CGFloat = 2
     internal var searchText = ""
     internal lazy var viewModel: PhotoViewModel = {
-       return PhotoViewModel()
+        return PhotoViewModel()
     }()
-        
+    weak var photoListVCDelegate: PhotoListVCDelegate?
+    
     //MARK: - View life cyle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +43,7 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded {
         
         viewModel.showAlert = { (message) in
             DispatchQueue.main.async {
-                    UIAlertController.showAlert(title: LocalizableStrings.error, message: message, cancelButton: LocalizableStrings.ok)
+                UIAlertController.showAlert(title: LocalizableStrings.error, message: message, cancelButton: LocalizableStrings.ok)
             }
         }
         viewModel.updataPhotoData = { [weak self] () in
@@ -65,12 +70,7 @@ final class PhotoListViewController: UICollectionViewController, Storyboarded {
             viewModel.resetCellViewModels = true
         }
         viewModel.searchPhotos(text: self.searchText)
-
-    }
-
-    //MARK: - Action
-    @IBAction func handleTap(_ sender: UITapGestureRecognizer) {
-        self.view.endEditing(true)
+        
     }
     
     //MARK: - UIScrollViewDelegate

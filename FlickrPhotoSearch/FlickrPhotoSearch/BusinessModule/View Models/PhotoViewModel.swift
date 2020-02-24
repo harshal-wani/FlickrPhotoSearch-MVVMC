@@ -11,7 +11,7 @@ import Foundation
 final class PhotoViewModel: NSObject {
     
     /// Local
-    let apiService: APIServiceProtocol
+    private let apiService: APIServiceProtocol
     private(set) var isLoading: Bool = false
     private var pageNo = 0
     internal var numberOfCells: Int {

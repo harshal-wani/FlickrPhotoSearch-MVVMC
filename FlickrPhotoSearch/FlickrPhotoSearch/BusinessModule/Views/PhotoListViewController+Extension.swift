@@ -42,6 +42,10 @@ extension PhotoListViewController {
         }
         return cell
     }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.photoListVCDelegate?.photoListVC(self, didSelect: viewModel.getCellViewModel( at: indexPath.row).photoURL)
+    }
 }
 
 // MARK: - Collection View Flow Layout Delegate

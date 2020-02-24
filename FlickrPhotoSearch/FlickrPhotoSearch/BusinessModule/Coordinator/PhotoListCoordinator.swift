@@ -12,6 +12,7 @@ final class PhotoListCoordinator: Coordinator {
     
     private var presenter: UINavigationController
     private var photoListViewController: PhotoListViewController?
+    private var photoDetailCoordinator: PhotoDetailCoordinator?
     
     init(presenter: UINavigationController) {
         self.presenter = presenter
@@ -19,8 +20,18 @@ final class PhotoListCoordinator: Coordinator {
     
     func start() {
         let photoListViewController = PhotoListViewController.instantiate()
+        photoListViewController.photoListVCDelegate = self
         self.photoListViewController = photoListViewController
         presenter.pushViewController(photoListViewController, animated: true)
+    }
+}
+
+extension PhotoListCoordinator: PhotoListVCDelegate {
+    
+    func photoListVC(_ controller: PhotoListViewController, didSelect photoURL: String) {
+        let photoDetailCoordinator = PhotoDetailCoordinator(presenter: presenter, photoURL: photoURL)
+        self.photoDetailCoordinator = photoDetailCoordinator
+        photoDetailCoordinator.start()
     }
     
 }
