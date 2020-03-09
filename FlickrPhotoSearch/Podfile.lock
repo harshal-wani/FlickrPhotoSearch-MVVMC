@@ -1,22 +1,38 @@
 PODS:
+  - OHHTTPStubs/Core (9.0.0)
+  - OHHTTPStubs/Default (9.0.0):
+    - OHHTTPStubs/Core
+    - OHHTTPStubs/JSON
+    - OHHTTPStubs/NSURLSession
+    - OHHTTPStubs/OHPathHelpers
+  - OHHTTPStubs/JSON (9.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/NSURLSession (9.0.0):
+    - OHHTTPStubs/Core
+  - OHHTTPStubs/OHPathHelpers (9.0.0)
+  - OHHTTPStubs/Swift (9.0.0):
+    - OHHTTPStubs/Default
   - SDWebImage (5.4.0):
     - SDWebImage/Core (= 5.4.0)
   - SDWebImage/Core (5.4.0)
   - SearchTextField (1.2.4)
 
 DEPENDENCIES:
+  - OHHTTPStubs/Swift
   - SDWebImage (~> 5.0)
   - SearchTextField
 
 SPEC REPOS:
   trunk:
+    - OHHTTPStubs
     - SDWebImage
     - SearchTextField
 
 SPEC CHECKSUMS:
+  OHHTTPStubs: cb29d2a9d09a828ecb93349a2b0c64f99e0db89f
   SDWebImage: 5bf6aec6481ae2a062bdc59f9d6c1d1e552090e0
   SearchTextField: 40dc3cc57def5a211f263cac263622c163bbc25a
 
-PODFILE CHECKSUM: cd156de55d350526274f7f292c91cf7cd5314122
+PODFILE CHECKSUM: ea46ba376bd86a7a0b42ecde5e16c8f67a6a679f
 
 COCOAPODS: 1.8.1

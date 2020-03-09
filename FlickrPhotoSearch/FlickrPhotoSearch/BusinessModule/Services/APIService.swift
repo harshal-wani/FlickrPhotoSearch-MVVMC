@@ -34,18 +34,15 @@ final class APIService: APIServiceProtocol {
         /// Make request
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
 
-            guard error == nil else {
-                completion(.failure(.invalidURL))
+            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, 200..<299 ~= statusCode else {
+                completion(.failure(APIError.checkErrorCode((response as? HTTPURLResponse)!.statusCode)))
                 return
             }
             guard data != nil else {
                 completion(.failure(APIError.noData))
                 return
             }
-            guard let statusCode = (response as? HTTPURLResponse)?.statusCode, 200..<299 ~= statusCode else {
-                completion(.failure(APIError.checkErrorCode((response as? HTTPURLResponse)!.statusCode)))
-                return
-            }
+            
             completion(.success(data!))
         }
         task.resume()

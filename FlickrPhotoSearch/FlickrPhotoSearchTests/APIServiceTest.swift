@@ -7,6 +7,8 @@
 //
 
 import XCTest
+import OHHTTPStubs
+
 @testable import FlickrPhotoSearch
 
 class APIServiceTest: XCTestCase {
@@ -20,6 +22,7 @@ class APIServiceTest: XCTestCase {
 
     override func tearDown() {
         aPIService = nil
+        HTTPStubs.removeAllStubs()
         super.tearDown()
     }
 
@@ -130,5 +133,38 @@ class APIServiceTest: XCTestCase {
             }
         }
         wait(for: [expect], timeout: 10.0)
+    }
+    
+    func testPageNotFound() {
+        
+        // Setup network stubs
+        let testHost = APP_URL.host
+        stub(condition: isHost(testHost)) { _ in
+            return HTTPStubsResponse(jsonObject: [:], statusCode: 404, headers: nil)
+        }
+        
+        // 1.Given
+        let aPIService = self.aPIService!
+        let errorExpectation = expectation(description: "Failure response with page not found")
+        
+        var errorResponse: APIError?
+        
+        // 2.When
+        let requestParam = SearchPhotoRequest(text: "fruit", page: 1).asDictionary()
+        aPIService.getDataFromURL(.searchPhoto(queryParams: requestParam)) { (result) in
+            switch result {
+            case .success( _):
+                XCTFail("Should be failed!")
+            case .failure(let err):
+                errorResponse = err
+            }
+            errorExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 3.0) { (error) in
+            // 3.Then
+            XCTAssertNotNil(errorResponse)
+            XCTAssertEqual("Requested page not found!", errorResponse?.rawValue)
+            
+        }
     }
 }

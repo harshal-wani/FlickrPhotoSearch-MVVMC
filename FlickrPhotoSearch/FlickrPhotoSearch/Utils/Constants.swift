@@ -25,7 +25,7 @@ enum APIError: String, Error {
     case invalidURL             = "Invalid url"
     case invalidResponse        = "Invalid response"
     case decodeError            = "Decode error"
-    case missingParameters      = "Missing required parameters!"
+    case pageNotFound      = "Requested page not found!"
     case noNetwork              = "Internet connection not available!"
     case noData                 = "Oops! There are no matches for entered text."
     case unknownError           = "Unknown error"
@@ -38,7 +38,7 @@ enum APIError: String, Error {
         case 500:
             return .serverError
         case 404:
-            return .missingParameters
+            return .pageNotFound
         default:
             return .unknownError
         }
